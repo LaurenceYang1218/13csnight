@@ -6,8 +6,6 @@ from flask import redirect, url_for
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.urandom(24)
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
 
 df = pd.DataFrame([], columns=['username', 'password', 'score'])
 
