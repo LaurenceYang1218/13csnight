@@ -1,0 +1,27 @@
+body{
+    background-color: #333333;
+}
+.error{
+    text-align: center;
+    margin-top: 15%;
+    color: lightcoral;
+}
+.info{
+    text-align: center;
+    margin-top: 15%;
+    color: lightgreen;
+}
+.login{
+    text-align: center;
+    margin-top: 15%;
+    color: white;
+}
+.correct{
+    color: lightgreen;
+}
+.wrong{
+    color: lightcoral;
+}
+.result{
+    color: lightgoldenrodyellow
+}
