@@ -3,7 +3,6 @@ import pandas as pd
 from flask import Flask
 from flask import render_template, request
 from flask import redirect, url_for
-from datetime import timedelta
 
 app = Flask(__name__)
 
