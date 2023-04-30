@@ -17,9 +17,9 @@
   <div class="container text-center"> 
     <div class="login">
       {% if info.correct %}
-      <h2 class="correct">對了</h2>
+      <h2 class="correct">答對了</h2>
       {% else %}
-      <h2 class="wrong">錯了</h2>
+      <h2 class="wrong">答錯了</h2>
       {% endif %}
       <br>
       <a href="/question/{{ info.username }}/{{ info.number+1 }}"><button class="btn btn-primary">Next</button></a>

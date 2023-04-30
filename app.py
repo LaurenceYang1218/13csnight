@@ -2,7 +2,7 @@ import pandas as pd
 from flask import Flask
 from flask import render_template, request
 from flask import redirect, url_for
-from .bank import qa_list
+from bank import qa_list
 
 app = Flask(__name__)
 df = pd.DataFrame([], columns=['username', 'password', 'score'])
@@ -88,4 +88,4 @@ def logout():
     
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True)
+    app.run('0.0.0.0', debug=False)

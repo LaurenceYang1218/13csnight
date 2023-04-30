@@ -1,8 +1,12 @@
-PYTHON = python3
+PYTHON3 = python3
 
 all: 
-	$(PYTHON) app.py 
-	
+	$(PYTHON3) app.py 
+py: 
+	python app.py
+sort:
+	$(PYTHON3) sort.py
+	cat sort.csv
 clean:
 	rm data.csv
 	touch data.csv
