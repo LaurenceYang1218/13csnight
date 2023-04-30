@@ -1,35 +1,38 @@
-import os
 import pandas as pd
 from flask import Flask
 from flask import render_template, request
 from flask import redirect, url_for
-from datetime import timedelta
 
 app = Flask(__name__)
 
 df = pd.DataFrame([], columns=['username', 'password', 'score'])
 
 question_answer_list = [
-    {'question': '1+2=?', 'choice': ['2', '3', '4', '5'] ,'answer': '3'},
-    {'question': '2+3=?', 'choice': ['4', '5', '6', '7'] ,'answer': '5'},
-    {'question': '3+4=?', 'choice': ['6', '7', '8', '9'] ,'answer': '7'},
-    {'question': '4+5=?', 'choice': ['8', '9', '10', '11'] ,'answer': '9'},
-    {'question': '5+6=?', 'choice': ['10', '11', '12', '13'] ,'answer': '11'},
-    {'question': '6+7=?', 'choice': ['12', '13', '14', '15'] ,'answer': '13'},
-    {'question': '7+8=?', 'choice': ['14', '15', '16', '17'] ,'answer': '15'},
-    {'question': '8+9=?', 'choice': ['16', '17', '18', '19'] ,'answer': '17'},
-    {'question': '9+10=?', 'choice': ['18', '19', '20', '21'] ,'answer': '19'},
-    {'question': '10+11=?', 'choice': ['20', '21', '22', '23'] ,'answer': '21'},
-    {'question': '11+12=?', 'choice': ['22', '23', '24', '25'] ,'answer': '23'},
-    {'question': '12+13=?', 'choice': ['24', '25', '26', '27'] ,'answer': '25'},
-    {'question': '13+14=?', 'choice': ['26', '27', '28', '29'] ,'answer': '27'},
-    {'question': '14+15=?', 'choice': ['28', '29', '30', '31'] ,'answer': '29'},
-    {'question': '15+16=?', 'choice': ['30', '31', '32', '33'] ,'answer': '31'},
-    {'question': '16+17=?', 'choice': ['32', '33', '34', '35'] ,'answer': '33'},
-    {'question': '17+18=?', 'choice': ['34', '35', '36', '37'] ,'answer': '35'},
-    {'question': '18+19=?', 'choice': ['36', '37', '38', '39'] ,'answer': '37'},
-    {'question': '19+20=?', 'choice': ['38', '39', '40', '41'] ,'answer': '39'},
-    {'question': '20+21=?', 'choice': ['40', '41', '42', '43'] ,'answer': '41'}
+    {'question': '2023年資工之夜的主題是什麼?', 'choice': ['subconsCiouS', 'SubContract', 'subConScious', 'subWaY'] ,'answer': 'subConScious'},
+    {'question': '以下何者不是交大資工系友?', 'choice': ['蘇家永', '吳銘雄', '蔡士傑', '謝仁謙'] ,'answer': '謝仁謙'},
+    {'question': '以下誰沒有在交大學餐打工?', 'choice': ['周彤瑾', '王俊閔', '陳柏安', '丁宇洋'] ,'answer': '陳柏安'},
+    {'question': '誰不是五月的壽星?', 'choice': ['林芷瑩', '游建峰', '涂圓緣', '李宇婕'] ,'answer': '李宇婕'},
+    {'question': '以下何者所代表的數字最大?', 'choice': ['張可晴的身高', '郭冠德的體重', '陳柏安的學分數', '陳宥安的年齡*6'] ,'answer': '張可晴的身高'},
+    {'question': '下列何者距離最近?', 'choice': ['女二舍、工程三館', '工程三館、阿根早點', '交映樓、二餐', '綜合一館、西區烤肉場'] ,'answer': '女二舍、工程三館'},
+    {'question': '國曆生日2月6日的張可晴屬什麼?', 'choice': ['龍', '蛇', '馬', '羊'] ,'answer': '蛇'},
+    {'question': '天晟燒臘的老闆叫什麼?', 'choice': ['馮翠埤', '黃小泰', '蔡三高', '陳天晟'] ,'answer': '黃小泰'},
+    {'question': '以下哪隻寵物沒有自己的寵物帳?', 'choice': ['肉包', '林小荳', '大胖熊', ' 醬波'] ,'answer': '林小荳'},
+    {'question': '以下哪個人沒有畫畫帳?', 'choice': ['林宇柔', '陳秀琴', '梁詠晴', '陳虹蓓'] ,'answer': '林宇柔'},
+    {'question': '以下誰不是南友會的成員?', 'choice': ['楊富祥', '郭晉維', '周彤瑾', '吳念蓉'] ,'answer': '周彤瑾'},
+    {'question': '人體透過呼吸運動吸進體內的氣體，其最主要成分為何？', 'choice': ['氧氣', '二氧化碳', '氮氣', '水氣'] ,'answer': '氮氣'},
+    {'question': '林一平教授曾經在報導中請記者小姐吃過什麼水果?', 'choice': ['麝香葡萄', '白草莓', '香水椰子', '西洋梨'] ,'answer': '白草莓'},
+    {'question': '陳柏庭喜歡幫張可晴做什麼?', 'choice': ['挖鼻孔', '刷牙', '寫程式', '畫眉毛'] ,'answer': '挖鼻孔'},
+    {'question': '涂圓緣去極麵道都吃什麼?', 'choice': ['養生魚肉鍋燒意麵', '炸醬麵', '豚骨拉麵', '韭菜水餃'] ,'answer': '韭菜水餃'},
+    {'question': '以下誰不是新竹人?', 'choice': ['Alison', 'Bill Wu', 'drawccc', 'circle'] ,'answer': 'circle'},
+    {'question': '福原愛如果得了老年癡呆會說什麼?', 'choice': ['哇沙咪', '養樂多', '撞球桌', '福原愛'] ,'answer': '福原愛'},
+    {'question': '資工女舞跳過以下哪首歌?', 'choice': ['Not Shy', 'Perfume', 'I AM', 'Catch'] ,'answer': 'Not Shy'},
+    {'question': '以下誰沒有女朋友?', 'choice': ['戚維凌', '丁宇洋', '杜峯', '楊卓敏'] ,'answer': '杜峯'},
+    {'question': '以下何者不是指周彤瑾?', 'choice': ['交大 9m88', '交大 Jolin', '交大 Jisoo', '交大吳卓源'] ,'answer': '交大 Jisoo'},
+    {'question': '以下誰不是臉頰肉軍團的成員?', 'choice': ['梁詠晴', '邵筱庭', '莊婕妤', '陳存佩'] ,'answer': '梁詠晴'},
+    {'question': '謝翔丞沒有在清交二手大拍賣XD上發生過什麼事?', 'choice': ['尋找 iphone 的失主', '賣情趣用品', '跟室友的合照被管理員刪掉', '徵友'] ,'answer': '徵友'},
+    {'question': '以下誰現在不是 Intel 實習生?', 'choice': ['陳伯庭', '黃則維', '高靖', '陳暐誠'] ,'answer': '高靖'},
+    {'question': '田馥甄是以下哪個教授的綽號?', 'choice': ['彭文志', '李奇育', '黃俊龍', '陳添福'] ,'answer': '陳添福'},
+    {'question': '下一屆系學會長是誰?', 'choice': ['戚維凌', '葉家蓁', '林宇柔', '張維成'] ,'answer': '戚維凌'}
 ]
 # home page
 @app.route('/')
@@ -98,6 +101,7 @@ def result(username):
     global df
     score = df.loc[df['username'] == username, 'score'].values[0]
     df = df.sort_values(by=['score'], ascending=False)
+    df = df.reset_index(drop=True)
     info = {
         'score': score,
         'data': df,
