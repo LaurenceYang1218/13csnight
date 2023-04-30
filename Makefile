@@ -1,9 +1,9 @@
-PYTHON3 = python3
+PYTHON = python3
 
 all: 
-	$(PYTHON3) app.py 
+	$(PYTHON) app.py 
 sort:
-	$(PYTHON3) sort.py
+	$(PYTHON) sort.py
 	cat sort.csv
 clean:
 	rm data.csv sort.csv
