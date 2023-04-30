@@ -11,15 +11,15 @@
 <body>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">CSNIGHT</span>
+      <span class="navbar-brand mb-0 h1">13CSNIGHT</span>
     </div>
   </nav>
   <div class="container text-center"> 
     <div class="login">
       {% if info.correct %}
-      <h2 class="correct">Bingo! You are correct</h2>
+      <h2 class="correct">對了</h2>
       {% else %}
-      <h2 class="wrong">Sorry. You are wrong</h2>
+      <h2 class="wrong">錯了</h2>
       {% endif %}
       <br>
       <a href="/question/{{ info.username }}/{{ info.number+1 }}"><button class="btn btn-primary">Next</button></a>
