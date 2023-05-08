@@ -17,7 +17,7 @@ qa_list = [
     {'question': '以下誰不是新竹人?', 'choice': ['Alison', 'Bill Wu', 'drawccc', 'circle'] ,'answer': 'circle'},
     {'question': '福原愛如果得了老年癡呆會說什麼?', 'choice': ['哇沙咪', '養樂多', '撞球桌', '福原愛'] ,'answer': '福原愛'},
     {'question': '資工女舞跳過以下哪首歌?', 'choice': ['Not Shy', 'Perfume', 'I AM', 'Catch'] ,'answer': 'Not Shy'},
-    {'question': '以下誰沒有女朋友?', 'choice': ['戚維凌', '丁宇洋', '杜峯', '楊卓敏'] ,'answer': '杜峯'},
+    {'question': '以下誰沒有女朋友?', 'choice': ['戚維凌', '丁宇洋', '單宇晟', '楊卓敏'] ,'answer': '單宇晟'},
     {'question': '以下何者不是指周彤瑾?', 'choice': ['交大 9m88', '交大 Jolin', '交大 Jisoo', '交大吳卓源'] ,'answer': '交大 Jisoo'},
     {'question': '以下誰不是臉頰肉軍團的成員?', 'choice': ['梁詠晴', '邵筱庭', '莊婕妤', '陳存佩'] ,'answer': '梁詠晴'},
     {'question': '謝翔丞沒有在清交二手大拍賣XD上發生過什麼事?', 'choice': ['尋找 iphone 的失主', '賣情趣用品', '跟室友的合照被管理員刪掉', '徵友'] ,'answer': '徵友'},

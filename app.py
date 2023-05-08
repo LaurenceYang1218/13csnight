@@ -6,7 +6,7 @@ from bank import qa_list
 
 app = Flask(__name__)
 df = pd.DataFrame([], columns=['username', 'password', 'score'])
-
+login_list = []
 # home page
 @app.route('/')
 def home():
@@ -23,11 +23,15 @@ def login():
         if username == '':
             error_type = 'username_error'
             return render_template('error_login.html', error=error_type)
+        if username in login_list:
+            error_type = 'login_error'
+            return render_template('error_login.html', error=error_type)
         if password == 'cs13union':
             info = {
                 'username': username,
                 'password': password
             }
+            login_list.append(username)
             global df
             if username not in df.values:
                 info_df = pd.DataFrame([[username, password, 0]], columns=['username', 'password', 'score'])      
